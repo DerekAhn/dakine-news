@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 type Metrics struct {
@@ -17,6 +18,13 @@ type Metrics struct {
 	Note   string `json:"note"`
 }
 
+var urls = []string{
+	"north",
+	"south",
+	"east",
+	"west",
+}
+
 func main() {
 	router := gin.Default()
 	router.GET("/", index)
@@ -24,16 +32,18 @@ func main() {
 }
 
 func index(c *gin.Context) {
+	responses := asyncHttpGets(urls)
+	reports := make(map[string][]Metrics)
 
-	data, err := fetch("east")
-	checkErr(err, "API fetch failed")
-
-	var east []Metrics
-	if err := json.Unmarshal(data, &east); err != nil {
-		log.Fatalln("Error decoing JSON", err)
+	for _, res := range responses {
+		var report []Metrics
+		if err := json.Unmarshal(res.body, &report); err != nil {
+			log.Fatalln("Error decoing JSON", err)
+		}
+		reports[res.url] = report
 	}
 
-	c.JSON(200, east)
+	c.JSON(200, reports)
 }
 
 func checkErr(err error, msg string) {
@@ -55,4 +65,36 @@ func fetch(url string) ([]byte, error) {
 	defer resp.Body.Close()
 
 	return ioutil.ReadAll(resp.Body)
+}
+
+type HttpResponse struct {
+	url  string
+	body []byte
+	err  error
+}
+
+func asyncHttpGets(urls []string) []*HttpResponse {
+	ch := make(chan *HttpResponse, len(urls))
+	responses := []*HttpResponse{}
+	for _, url := range urls {
+		go func(url string) {
+			data, err := fetch(url)
+
+			ch <- &HttpResponse{url, data, err}
+		}(url)
+	}
+
+	for {
+		select {
+		case r := <-ch:
+			responses = append(responses, r)
+			if len(responses) == len(urls) {
+				return responses
+			}
+		default:
+			time.Sleep(5e1)
+		}
+	}
+
+	return responses
 }
