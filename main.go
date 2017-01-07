@@ -8,6 +8,8 @@ import (
 
 func main() {
 	router := gin.Default()
+	router.LoadHTMLGlob("resources/*.templ.html")
+	router.Static("/static", "resources/static")
 	router.GET("/", index)
 	router.Run(":3000")
 }
@@ -18,7 +20,7 @@ type Metrics struct {
 	Haw    string `json:"haw"`
 	Face   string `json:"face"`
 	Scale  string `json:'scale'`
-	Note   string `json:"note"`
+	Note   string `json:"note,omitempty"`
 }
 
 func index(c *gin.Context) {
@@ -32,8 +34,12 @@ func index(c *gin.Context) {
 		if err := json.Unmarshal(res.body, &report); err != nil {
 			log.Fatalln("Error decoing JSON", err)
 		}
+
 		reports[res.url] = report
 	}
 
-	c.JSON(200, reports)
+	c.HTML(200, "index.templ.html", gin.H{
+		"world":   "Gopher",
+		"reports": reports,
+	})
 }
