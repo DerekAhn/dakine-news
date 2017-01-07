@@ -11,14 +11,20 @@
       {{ range $coast, $report := .reports }}
         <li>
           {{ $coast }}
-          {{ range $report }}
-            report: {{.Report}}
-            Wind: {{.Wind}}
-            Haw: {{.Haw}}
-            Face: {{.Face}}
-            Scale: {{.Scale}}
-            Note: {{.Note}}
-          {{ end }}
+          <ul>
+            {{ range $report }}
+              <li>
+                report: {{.Report}}<br>
+                Wind: {{.Wind}}<br>
+                Haw: {{.Haw}}ft<br>
+                Face: {{.Face}}ft<br>
+                Scale: {{.Scale}}<br>
+                {{if .Note -}}
+                  Note: {{.Note}}<br>
+                {{- end}}
+              </li>
+            {{ end }}
+          </ul>
         </li>
       {{ end }}
     </ul>
