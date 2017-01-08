@@ -15,26 +15,27 @@ type Metrics struct {
 	Note   string `json:"note,omitempty"`
 }
 
+type Report struct {
+	Coast string
+	Data  []Metrics
+}
+
 func index(c *gin.Context) {
 	urls := []string{"north", "west", "south", "east"}
 
 	responses := asyncHttpGets(urls)
-	reports := make(map[string][]Metrics)
-	coasts := make([]string, 0)
+	reports := make([]Report, 0)
 
 	for _, res := range responses {
-		var report []Metrics
-		if err := json.Unmarshal(res.body, &report); err != nil {
+		var data []Metrics
+		if err := json.Unmarshal(res.body, &data); err != nil {
 			log.Fatalln("Error decoing JSON", err)
 		}
-
-		reports[res.url] = report
-		coasts = append(coasts, res.url)
+		reports = append(reports, Report{res.url, data})
 	}
 
 	c.HTML(200, "index.templ.html", gin.H{
 		"title":   "Dakine News",
 		"reports": reports,
-		"coasts":  coasts,
 	})
 }
