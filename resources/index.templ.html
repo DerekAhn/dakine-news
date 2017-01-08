@@ -25,16 +25,33 @@
       <ul>
         {{ range .reports }}
           <li class="page page-{{ .Coast }}">
-            <h2>{{ .Coast }}</h2>
+            <h2 class="start-case">{{ .Coast }}</h2>
             {{ range .Data }}
               <h5 class="date">{{ .Report }}</h5>
-              Swell: {{ .Wind }}
-              Hawaiian: {{ .Haw }}ft
-              Haole: {{ .Face }}ft
-              Steh: {{ .Scale }}
-              {{if .Note -}}
-                Ho Brah: {{ .Note }}
-              {{- end}}
+              <table>
+                <tr>
+                  <td>Swell</td>
+                  <td>{{ .Wind }}</td>
+                </tr>
+                <tr>
+                  <td>Hawaiian</td>
+                  <td>{{ .Haw }} <span class="unit-ft"> ft</span></td>
+                </tr>
+                <tr>
+                  <td>Haole</td>
+                  <td>{{ .Face }}<span class="unit-ft"> ft</span></td>
+                </tr>
+                <tr>
+                  <td>Steh</td>
+                  <td>{{ .Scale }}</td>
+                </tr>
+                {{if .Note -}}
+                  <tr>
+                    <td>Ho Brah!</td>
+                    <td>{{ .Note }}</td>
+                  </tr>
+                {{- end}}
+              </table>
             {{ end }}
           </li>
         {{ end }}
