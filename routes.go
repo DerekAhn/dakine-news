@@ -20,6 +20,7 @@ func index(c *gin.Context) {
 
 	responses := asyncHttpGets(urls)
 	reports := make(map[string][]Metrics)
+	coasts := make([]string, 0)
 
 	for _, res := range responses {
 		var report []Metrics
@@ -28,10 +29,12 @@ func index(c *gin.Context) {
 		}
 
 		reports[res.url] = report
+		coasts = append(coasts, res.url)
 	}
 
 	c.HTML(200, "index.templ.html", gin.H{
-		"world":   "Gopher",
+		"title":   "Dakine News",
 		"reports": reports,
+		"coasts":  coasts,
 	})
 }

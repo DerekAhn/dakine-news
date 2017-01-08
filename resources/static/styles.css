@@ -114,14 +114,21 @@ h1, h2, h3, h4, h5, h6 {
   overflow-x: hidden;
   overflow-y: auto;
 }
-.page.page-left {
+.page.page-right,
+.page.page-north {
   background-color: red;
 }
-.page.page-center {
+
+.page.page-center,
+.page.page-west {
   background-color: green;
 }
-.page.page-right {
+.page.page-left,
+.page.page-south {
   background-color: blue;
+}
+.page.page-east {
+  background-color: orange;
 }
 
 /*

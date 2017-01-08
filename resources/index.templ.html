@@ -4,41 +4,41 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Dakine News</title>
+    <title>{{ .title }}</title>
     <link rel="stylesheet" type="text/css" href ="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.6/css/normalize.min.css">
     <link rel="stylesheet" type="text/css" href ="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.6/css/foundation.min.css">
     <link href="/static/styles.css" rel="stylesheet" />
   </head>
   <body>
+
     <nav class="topbar" role="navigation" class="valign-center">
       <div class="row collapse text-center">
-        <div class="column small-4">
-          <a href="#" data-nav="" data-show="0">Left</a>
-        </div>
-
-        <div class="column small-4">
-          <a href="#" data-nav="" data-show="1">Center</a>
-        </div>
-
-        <div class="column small-4">
-          <a href="#" data-nav="" data-show="2">Right</a>
-        </div>
-
+        {{ range $i, $coast := .coasts}}
+          <div class="column small-3">
+            <a href="#" data-nav="" data-show="{{ $i }}">{{ $coast }}</a>
+          </div>
+        {{ end }}
         <div class="active-nav"><div class="active-nav__bar"></div></div>
       </div>
     </nav>
 
     <main id="carousel" class="carousel" role="main">
       <ul>
-        <li class="page page-left">
-         Left
-        </li>
-        <li class="page page-center">
-          Center
-        </li>
-        <li class="page page-right">
-         Right
-        </li>
+        {{ range $coast, $report := .reports }}
+          <li class="page page-{{ $coast }}">
+            <h2>{{ $coast }}</h2>
+            {{ range $report }}
+              <h5 class="date">{{ .Report }}</h5>
+              Swell: {{ .Wind }}
+              Hawaiian: {{ .Haw }}ft
+              Haole: {{ .Face }}ft
+              Steh: {{ .Scale }}
+              {{if .Note -}}
+                Ho Brah: {{ .Note }}
+              {{- end}}
+            {{ end }}
+          </li>
+        {{ end }}
       </ul>
     </main>
 
@@ -49,38 +49,3 @@
     <script src="/static/slide.js"></script>
   </body>
 </html>
-
-<!-- <div class="app"> -->
-<!--   {{ range $coast, $report := .reports }} -->
-<!--     <section class="coast coast-{{$coast}}"> -->
-<!--       <h1 class="coast-title">{{ $coast }}</h1> -->
-<!--       {{ range $report }} -->
-<!--         <article class="report"> -->
-<!--           <h5 class="date">{{ .Report }}</h5> -->
-<!--             <div class="row"> -->
-<!--               <div class="column key">Swell:</div> -->
-<!--               <div class="column value">{{ .Wind }}</div> -->
-<!--             </div> -->
-<!--             <div class="row"> -->
-<!--               <div class="column key">Hawaiian:</div> -->
-<!--               <div class="column value">{{ .Haw }} <span class="metric">ft</span></div> -->
-<!--             </div> -->
-<!--             <div class="row"> -->
-<!--               <div class="column key">Haole:</div> -->
-<!--               <div class="column value">{{ .Face }} <span class="metric">ft</span></div> -->
-<!--             </div> -->
-<!--             <div class="row"> -->
-<!--               <div class="column key">Scale:</div> -->
-<!--               <div class="column value">{{ .Scale }}</div> -->
-<!--             </div> -->
-<!--             {{if .Note -}} -->
-<!--               <div class="row"> -->
-<!--                 <div class="column key">Ho brah:</div> -->
-<!--                 <div class="column value">{{ .Note }}</div> -->
-<!--               </div> -->
-<!--             {{- end}} -->
-<!--         </article> -->
-<!--       {{ end }} -->
-<!--     </section> -->
-<!--   {{ end }} -->
-<!-- </div> -->
