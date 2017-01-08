@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,9 +12,9 @@
 
     <nav class="topbar" role="navigation" class="valign-center">
       <div class="row collapse text-center">
-        {{ range $i, $coast := .coasts}}
+        {{ range $i, $val := .reports }}
           <div class="column small-3">
-            <a href="#" data-nav="" data-show="{{ $i }}">{{ $coast }}</a>
+            <a href="#" data-nav="" data-show="{{ $i }}">{{ .Coast }}</a>
           </div>
         {{ end }}
         <div class="active-nav"><div class="active-nav__bar"></div></div>
@@ -24,10 +23,10 @@
 
     <main id="carousel" class="carousel" role="main">
       <ul>
-        {{ range $coast, $report := .reports }}
-          <li class="page page-{{ $coast }}">
-            <h2>{{ $coast }}</h2>
-            {{ range $report }}
+        {{ range .reports }}
+          <li class="page page-{{ .Coast }}">
+            <h2>{{ .Coast }}</h2>
+            {{ range .Data }}
               <h5 class="date">{{ .Report }}</h5>
               Swell: {{ .Wind }}
               Hawaiian: {{ .Haw }}ft
