@@ -14,7 +14,7 @@
       <div class="row collapse text-center">
         {{ range $i, $val := .reports }}
           <div class="column small-3">
-            <a href="#" data-nav="" data-show="{{ $i }}">{{ .Coast }}</a>
+            <a class="start-case" href="#" data-nav="" data-show="{{ $i }}">{{ .Coast }}</a>
           </div>
         {{ end }}
         <div class="active-nav"><div class="active-nav__bar"></div></div>
