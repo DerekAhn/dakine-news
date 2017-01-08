@@ -115,15 +115,13 @@ h1, h2, h3, h4, h5, h6 {
   overflow-y: auto;
 }
 .page.page-left {
-  background-image: url(https://c1.staticflickr.com/9/8400/8939364295_f6a2dfee38_b.jpg);
-  left: -100%;
+  background-color: red;
 }
 .page.page-center {
-  background-image: url(https://c2.staticflickr.com/6/5016/5474953677_e90dfcbb71_b.jpg);
+  background-color: green;
 }
 .page.page-right {
-  background-image: url(https://c3.staticflickr.com/3/2922/14402577354_af56e71312_c.jpg);
-  left: 100%;
+  background-color: blue;
 }
 
 /*
