@@ -1,6 +1,4 @@
-/**
-* requestAnimationFrame polyfill
-*/
+// requestAnimationFrame polyfill
 (function() {
   var lastTime = 0;
   var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -26,14 +24,7 @@
     };
 }());
 
-
-
-/**
-* Carousel class
-*/
-
 function Carousel(el, opts) {
-
   var self = this;
   var $el = $(el);
 
@@ -41,14 +32,12 @@ function Carousel(el, opts) {
   var $panes = $("> ul > li", $el);
 
   // state
-
   var paneWidth = 0;
   var paneCount = $panes.length;
   var paneActiveIdx = 1;
   var paneActiveOffset = 0;
 
   // Add/remove event listeners, play nicely with others
-
   var startResizing = function () {
     setPaneDimensions();
     self.showPane(paneActiveIdx);
@@ -61,7 +50,6 @@ function Carousel(el, opts) {
   self.destroy = function() {
     $(window).off("load resize orientationchange", startResizing);
   };
-
 
   // set active pane
   self.showPane = function (idx, animated) {
@@ -167,7 +155,6 @@ function Carousel(el, opts) {
   }
 
   // initialize hammer
-
   var mc = new Hammer.Manager(el, {
     dragLockToAxis: true,
     dragBlockHorizontal: true
@@ -195,25 +182,24 @@ $('[data-nav=""]').on("click", function () {
 });
 
 // Trims for white space and 'occ xx - xx'
-$('.surf').map(function(_, val) {
+$('.surf-size').map(function(_, val) {
   var trimmed = $(val).attr('data').replace(/occ.*$/, '').replace(/%20.*$/, '');
-  var metric  = '<span class="metric-ft">FT</span>';
-  $(val).html(trimmed + metric);
+  $(val).html(trimmed);
 });
 
+function parseData(elem) {
+  return $(elem).attr('data').replace(/-/, '/')+ "/" +new Date().getFullYear();
+}
 // Formats Today's report dates to i.e. Sunday June 9
 $('.today-report-date').map(function(_, val) {
   var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var day   = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var date  = new Date($(val).attr('data')+ "-" +new Date().getFullYear());
+  var date  = new Date(parseData(val));
   $(val).html(day[date.getDay()]+", "+month[date.getMonth()]+" "+date.getDate());
 });
-
 // Formats week's report dates to i.e. Mon 1/9
 $('.day-report-date').map(function(_, val) {
-  var parsed  = new Date($(val).attr('data')+ "-" +new Date().getFullYear());
-  var day     = parsed.getDate();
-  var month   = parsed.getMonth() + 1;
-  var weekday = parsed.toString().split(' ')[0];
-  $(val).html(weekday+' '+month+'/'+day);
+  var date = new Date(parseData(val));
+  var weekday = date.toString().split(' ')[0];
+  $(val).html(weekday+' '+date.getMonth() + 1+'/'+date.getDate());
 });

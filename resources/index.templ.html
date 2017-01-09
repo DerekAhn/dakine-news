@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <title>{{ .title }}</title>
-    <link rel="stylesheet" type="text/css" href ="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.6/css/normalize.min.css">
-    <link rel="stylesheet" type="text/css" href ="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.6/css/foundation.min.css">
+    <link rel="stylesheet" type="text/css" href ="//cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
     <link href="/static/styles.css" rel="stylesheet" />
   </head>
   <body>
@@ -25,31 +24,35 @@
       <ul>
         {{ range .reports }}
           <li class="page page-{{ .Coast }}">
-            <section>
+            <header>
               <div class="row">
-                <div class="column small-6">
-                  <h3 class="start-case">{{ .Coast }}</h3>
-                </div>
-                <div class="column small-6">
-            {{ range .Today }}
-                <h3 class="start-case">{{ .Scale }}</h3>
+                <div class="column small-12">
+                  <h1 class="coast-title start-case">{{ .Coast }}</h3>
                 </div>
               </div>
-            </section>
-              <h1 class="surf" data="{{ .Haw }}">{{ .Haw }}<span class="metric-ft">FT</span></h1>
-              <h2>{{ .Wind }}</h2>
+            </header>
+
+            {{ range .Today }}
+              <article class="show-for-portrait">
+                <div class="row align-middle">
+                  <p class="note start-case">{{ .Note }}</p>
+                  <div class="column">
+                    <h1 class="main-surf surf-size" data="{{ .Haw }}">{{ .Haw }}</h1>
+                  </div>
+                </div>
+
+                <div class="main-swell">
+                  <h2>{{ .Wind }}</h2>
+                </div>
+              </article>
 
               <section class="stats-bar">
                 <div class="row">
-                  <div class="column small-4">
-                    <p class="today-report-date" data="{{ .Report }}">{{ .Report }}</p>
+                  <div class="column small-6">
+                    <p class="today-report-date stat start-case" data="{{ .Report }}">{{ .Report }}</p>
                   </div>
-                  <div class="column small-8">
-                    {{if .Note -}}
-                      <p class="start-case">{{ .Note }}</p>
-                    {{ else }}
-                      <p>Brah</p>
-                    {{- end}}
+                  <div class="column small-6">
+                    <p class="stat start-case">{{ .Scale }}</p>
                   </div>
                 </div>
               </section>
@@ -60,8 +63,8 @@
                 {{ range .Week }}
                   <div class="column small-3 day-report">
                     <p class="day-report-date" data="{{ .Report }}">{{ .Report }}</p>
-                    <h5 class="surf" data="{{ .Haw }}">{{ .Haw }} <span class="metric-ft">FT</span></h5>
-                    <p>{{ .Wind }}</p>
+                    <h5 class="surf surf-size" data="{{ .Haw }}">{{ .Haw }}</h5>
+                    <div class="swell">{{ .Wind }}</div>
                   </div>
                 {{ end }}
               </div>
@@ -73,7 +76,7 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js"></script>
     <script src="//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js"></script>
     <script src="/static/slide.js"></script>
   </body>
