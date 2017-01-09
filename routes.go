@@ -32,7 +32,7 @@ func index(c *gin.Context) {
 		if err := json.Unmarshal(res.body, &data); err != nil {
 			log.Fatalln("Error decoing JSON", err)
 		}
-		reports = append(reports, Report{res.url, data})
+		reports = append(reports, Report{res.url, data[0:1], data[1:5]})
 	}
 
 	c.HTML(200, "index.templ.html", gin.H{
