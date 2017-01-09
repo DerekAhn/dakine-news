@@ -1,5 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:900,400);
-
 html, body {
   min-height: 100%;
   height: 100%;
@@ -12,17 +10,8 @@ html, body {
 body {
   background: #f0f0f0;
   color: #212121;
-  font-family: "Roboto", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-}
-
-/*
-* Components
-*/
 .topbar {
   position: absolute;
   left: 0;
