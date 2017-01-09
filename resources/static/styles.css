@@ -37,7 +37,7 @@ body {
   top: 2.5em;
   position: absolute;
   width: 25%;
-  height: 0.5em;
+  height: 0.2em;
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
 }
