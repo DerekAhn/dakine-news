@@ -184,12 +184,6 @@ function Carousel(el, opts) {
 
 }
 
-
-
-/**
-* Demo
-*/
-
 var container = document.getElementById("carousel");
 var c = new Carousel(container);
 c.init();
@@ -199,3 +193,11 @@ $('[data-nav=""]').on("click", function () {
   var $self = $(this);
   c.throttledShowPane($self.data("show"), true);
 });
+
+// Trims for white space and 'occ xx - xx'
+$('.surf').map(function(_, val) {
+  var trimmed = $(val).attr('data').replace(/occ.*$/, '').replace(/%20.*$/, '');
+  var metric  = '<span class="metric-ft">FT</span>';
+  $(val).html(trimmed + metric);
+});
+
