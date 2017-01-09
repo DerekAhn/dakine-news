@@ -201,3 +201,19 @@ $('.surf').map(function(_, val) {
   $(val).html(trimmed + metric);
 });
 
+// Formats Today's report dates to i.e. Sunday June 9
+$('.today-report-date').map(function(_, val) {
+  var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var day   = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var date  = new Date($(val).attr('data')+ "-" +new Date().getFullYear());
+  $(val).html(day[date.getDay()]+", "+month[date.getMonth()]+" "+date.getDate());
+});
+
+// Formats week's report dates to i.e. Mon 1/9
+$('.day-report-date').map(function(_, val) {
+  var parsed  = new Date($(val).attr('data')+ "-" +new Date().getFullYear());
+  var day     = parsed.getDate();
+  var month   = parsed.getMonth() + 1;
+  var weekday = parsed.toString().split(' ')[0];
+  $(val).html(weekday+' '+month+'/'+day);
+});
