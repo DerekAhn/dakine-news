@@ -17,7 +17,8 @@ type Metrics struct {
 
 type Report struct {
 	Coast string
-	Data  []Metrics
+	Today []Metrics
+	Week  []Metrics
 }
 
 func index(c *gin.Context) {
