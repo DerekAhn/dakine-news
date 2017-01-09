@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"github.com/patrickmn/sortutil"
 	"log"
 )
 
@@ -33,6 +34,7 @@ func index(c *gin.Context) {
 			log.Fatalln("Error decoing JSON", err)
 		}
 		reports = append(reports, Report{res.url, data[0:1], data[1:5]})
+		sortutil.DescByField(reports, "Coast")
 	}
 
 	c.HTML(200, "index.templ.html", gin.H{
