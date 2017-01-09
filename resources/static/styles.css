@@ -99,9 +99,24 @@ body {
   overflow-y: auto;
 }
 
-table {
-  width: 90%;
-  margin: 0 auto;
+.stats-bar {
+  width: 100%;
+  bottom: 13em;
+  padding: 20px 0;
+  position: absolute;
+}
+
+.week-reports {
+  width: 100%;
+  bottom: 3em;
+  position: absolute;
+  padding: 30px 0;
+}
+.day-report {
+  border-right: 1px solid #666;
+}
+.day-report:last-child {
+  border-right: none;
 }
 
 /* Utils */

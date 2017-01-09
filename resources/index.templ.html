@@ -25,41 +25,54 @@
       <ul>
         {{ range .reports }}
           <li class="page page-{{ .Coast }}">
-            <h2 class="start-case">{{ .Coast }}</h2>
-            {{ range .Data }}
-              <h5 class="date">{{ .Report }}</h5>
-              <table>
-                <tr>
-                  <td>Swell</td>
-                  <td>{{ .Wind }}</td>
-                </tr>
-                <tr>
-                  <td>Hawaiian</td>
-                  <td>{{ .Haw }} <span class="unit-ft"> ft</span></td>
-                </tr>
-                <tr>
-                  <td>Haole</td>
-                  <td>{{ .Face }}<span class="unit-ft"> ft</span></td>
-                </tr>
-                <tr>
-                  <td>Steh</td>
-                  <td>{{ .Scale }}</td>
-                </tr>
-                {{if .Note -}}
-                  <tr>
-                    <td>Ho Brah!</td>
-                    <td>{{ .Note }}</td>
-                  </tr>
-                {{- end}}
-              </table>
+            <section>
+              <div class="row">
+                <div class="column small-6">
+                  <h3 class="start-case">{{ .Coast }}</h3>
+                </div>
+                <div class="column small-6">
+            {{ range .Today }}
+                <h3 class="start-case">{{ .Scale }}</h3>
+                </div>
+              </div>
+            </section>
+              <h1 class="surf" data="{{ .Haw }}">{{ .Haw }}<span class="metric-ft">FT</span></h1>
+              <h2>{{ .Wind }}</h2>
+
+              <section class="stats-bar">
+                <div class="row">
+                  <div class="column small-4">
+                    <p class="today-report-date" data="{{ .Report }}">{{ .Report }}</p>
+                  </div>
+                  <div class="column small-8">
+                    {{if .Note -}}
+                      <p class="start-case">{{ .Note }}</p>
+                    {{ else }}
+                      <p>Brah</p>
+                    {{- end}}
+                  </div>
+                </div>
+              </section>
             {{ end }}
+
+            <section class="week-reports">
+              <div class="row">
+                {{ range .Week }}
+                  <div class="column small-3 day-report">
+                    <p class="day-report-date" data="{{ .Report }}">{{ .Report }}</p>
+                    <h5 class="surf" data="{{ .Haw }}">{{ .Haw }} <span class="metric-ft">FT</span></h5>
+                    <p>{{ .Wind }}</p>
+                  </div>
+                {{ end }}
+              </div>
+            </section>
           </li>
         {{ end }}
       </ul>
     </main>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js"></script>
     <script src="/static/slide.js"></script>
