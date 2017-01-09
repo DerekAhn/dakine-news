@@ -47,8 +47,7 @@ func fetch(url string) ([]byte, error) {
 
 	if err != nil {
 		log.Fatalln("Error http.GET:", err)
-	} else if resp.StatusCode != http.StatusOK {
-		log.Fatalln("Error Status not OK:", resp.StatusCode)
+		log.Fatalln("Error failed GET:", API+url, "\nError Status not OK:", resp.StatusCode)
 	}
 
 	defer resp.Body.Close()
