@@ -14,7 +14,7 @@ $ ./dakine-news
 
 ### Screenshots
 
-![Portrait](http://s1076.photobucket.com/user/derekahn/media/screencapture-localhost-3000-1484022132367_zpsbyndqaqj.png.html "Portrait")
-![Landscape](http://s1076.photobucket.com/user/derekahn/media/screencapture-localhost-3000-1484022127913_zpsjjr4siai.png.html "Landscape")
+![Portrait](https://cloud.githubusercontent.com/assets/5381156/21800429/7b654886-d6d2-11e6-8d8f-b46f512b435b.png)
+![Landscape](https://cloud.githubusercontent.com/assets/5381156/21800430/7b6562bc-d6d2-11e6-8c3b-73e1f2b4c7dd.png)
 
 ### Cheers
