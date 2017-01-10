@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/gin-gonic/gin"
 	"github.com/patrickmn/sortutil"
+	"gopkg.in/gin-gonic/gin.v1"
 	"log"
 )
 
