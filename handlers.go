@@ -33,7 +33,7 @@ func asyncHttpGets(urls []string) []*HttpResponse {
 				return responses
 			}
 		default:
-			time.Sleep(5e1)
+			time.Sleep(100)
 		}
 	}
 
