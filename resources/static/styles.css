@@ -8,12 +8,11 @@ html, body {
 }
 
 body {
-  background: #f0f0f0;
+  background: hsl(195, 87%, 54%);
   color: #212121;
 }
 
 .topbar {
-  position: absolute;
   left: 0;
   width: 100%;
   background-color: #05384C;
@@ -100,7 +99,24 @@ body {
 }
 
 header {
+  background-color: white;
   border-bottom: 1px solid #787878;
+}
+.flex-center {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex !important;
+}
+.surf-report {
+  background: hsl(195, 87%, 54%);
+  min-height: 60%;
+}
+.frame {
+  height: 37vh;
+  width: 37vh;
+  background-color: white;
+  border-radius: 50%;
 }
 .coast-title {
   text-align: left;
@@ -113,8 +129,9 @@ header {
   bottom: 11em;
   padding: 20px 0;
   position: absolute;
-  background-color: #cccbce;
-  color: #787878;
+  background: hsl(195, 87%, 54%);
+  color: white;
+  border-top: 1px solid white;
 }
 .stat {
   margin: 0;
@@ -130,8 +147,10 @@ header {
   margin: 0;
 }
 .main-swell {
-  margin: 0 auto;
+  border-top: 1px solid #787878;
   font-size: 2em;
+  letter-spacing: 5px;
+  font-weight: 400;
 }
 .main-surf:after {
   content: "FT";
@@ -141,6 +160,7 @@ header {
   font-size: 25px;
 }
 .week-reports {
+  background-color: white;
   width: 100%;
   bottom: 3em;
   position: absolute;
@@ -175,6 +195,30 @@ header {
   margin: 0;
 }
 
+/* For mobile-horizontal */
+.horizontal-note {
+  text-align: right;
+}
+.horizontal-surf {
+  margin: 0;
+  text-align: left;
+  font-size: 2.5em;
+  font-weight: 400;
+}
+.horizontal-swell {
+  text-align: left;
+  font-weight: 400;
+}
+.horizontal-surf:after {
+  content: "FT";
+  font-size: 0.5em;
+  position: relative;
+  bottom: 15px;
+  left: 3px;
+  font-weight: 800;
+}
+
+/* color: #2d72b6; */
 /* Utils */
 .start-case {
   text-transform: capitalize;

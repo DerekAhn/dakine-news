@@ -4,22 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <title>{{ .title }}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+    <link rel="icon" sizes="192x192" href="icon.png">
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href ="//cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
     <link href="/static/styles.css" rel="stylesheet" />
   </head>
   <body>
-
-    <nav class="topbar" role="navigation" class="valign-center">
-      <div class="row collapse text-center">
-        {{ range $i, $val := .reports }}
-          <div class="column small-3">
-            <a class="start-case" href="#" data-nav="" data-show="{{ $i }}">{{ .Coast }}</a>
-          </div>
-        {{ end }}
-        <div class="active-nav"><div class="active-nav__bar"></div></div>
-      </div>
-    </nav>
-
     <main id="carousel" class="carousel" role="main">
       <ul>
         {{ range .reports }}
@@ -33,17 +24,30 @@
             </header>
 
             {{ range .Today }}
-              <article class="show-for-portrait">
-                <div class="row align-middle">
-                  <p class="note start-case">{{ .Note }}</p>
-                  <div class="column">
-                    <h1 class="main-surf surf-size" data="{{ .Haw }}">{{ .Haw }}</h1>
+              <article class="show-for-landscape">
+                <div class="row">
+                  <div class="column small-7">
+                    <div class="row">
+                      <div class="column small-6">
+                        <h1 class="horizontal-surf surf-size" data="{{ .Haw }}">{{ .Haw }}</h1>
+                      </div>
+                      <div class="column small-6">
+                        <h2 class="horizontal-swell">{{ .Wind }}</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="horizontal-note column small-5">
+                    <p class="note start-case">{{ .Note }}</p>
                   </div>
                 </div>
+              </article>
 
-                <div class="main-swell">
-                  <h2>{{ .Wind }}</h2>
-                </div>
+              <article class="flex-center surf-report hide-for-landscape">
+                <p class="note start-case">{{ .Note }}</p>
+                  <div class="flex-center frame">
+                    <h1 class="main-surf surf-size" data="{{ .Haw }}">{{ .Haw }}</h1>
+                    <h2 class="main-swell">{{ .Wind }}</h2>
+                  </div>
               </article>
 
               <section class="stats-bar">
@@ -73,6 +77,17 @@
         {{ end }}
       </ul>
     </main>
+
+    <nav class="topbar" role="navigation" class="valign-center">
+      <div class="row collapse text-center">
+        {{ range $i, $val := .reports }}
+          <div class="column small-3">
+            <a class="start-case" href="#" data-nav="" data-show="{{ $i }}">{{ .Coast }}</a>
+          </div>
+        {{ end }}
+        <div class="active-nav"><div class="active-nav__bar"></div></div>
+      </div>
+    </nav>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
