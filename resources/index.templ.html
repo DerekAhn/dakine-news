@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <title>{{ .title }}</title>
     <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
@@ -42,7 +43,7 @@
                 </div>
               </article>
 
-              <article class="flex-center surf-report hide-for-landscape">
+              <article class="flex-center surf-report hide-in-landscape">
                 <p class="note start-case">{{ .Note }}</p>
                   <div class="flex-center frame">
                     <h1 class="main-surf surf-size" data="{{ .Haw }}">{{ .Haw }}</h1>
