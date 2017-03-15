@@ -1,4 +1,4 @@
-# 👉 dakine-news 📰
+# 🌊 dakine-news 📰
 
 Simple App built on Go's [Gin framework](https://gin-gonic.github.io/gin/), that deliver's Oahu's latest surf report.
 
