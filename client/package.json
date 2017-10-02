@@ -1,0 +1,10 @@
+{
+  "name": "dakine-news",
+  "version": "1.0.0",
+  "description": "Simple surf report App for Oahu",
+  "main": "index.js",
+  "repository": "https://github.com/derekahn/dakine-news",
+  "author": "Derek Ahn <git.derek@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
